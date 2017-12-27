@@ -4373,6 +4373,10 @@ void *commander_low_prio_loop(void *arg)
 						/* do not spam MAVLink, but provide the answer / green led mechanism */
 						mavlink_log_critical(&mavlink_log_pub, "onboard parameters reset");
 						answer_command(cmd, vehicle_command_s::VEHICLE_CMD_RESULT_ACCEPTED, command_ack_pub, command_ack);
+
+						/* reboot */
+						usleep(100000);
+						px4_shutdown_request(true, false);
 					}
 
 					break;
