@@ -260,10 +260,13 @@ then
 	#
 	if param compare SYS_AUTOSTART 0
 	then
-		ekf2 start
-	else
-		sh /etc/init.d/rc.autostart
+		param reset_nostart RC* LND_FLIGHT_T_*
+		param set SYS_AUTOSTART 13000
+		set AUTOCNF yes
 	fi
+
+	sh /etc/init.d/rc.autostart
+
 	unset MODE
 
 	#
